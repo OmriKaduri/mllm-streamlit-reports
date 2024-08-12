@@ -23,9 +23,12 @@ st.write('Internvl Accuracy', df['internvl_decision'].mean())
 
 # show accuracy of grouped by category
 st.write('**Accuracy by keypoint**')
-st.write(df.groupby('keypoint_text_desc')['gpt4o_decision'].mean())
-st.write(df.groupby('keypoint_text_desc')['internvl_decision'].mean())
-
+gpt4o_res = df.groupby('keypoint_text_desc')['gpt4o_decision'].mean()
+internvl_res = df.groupby('keypoint_text_desc')['internvl_decision'].mean()
+# show in single table
+res = pd.concat([gpt4o_res, internvl_res], axis=1)
+res.columns = ['GPT-4o', 'Internvl']
+st.write(res)
 
 gpt4o_results_path = 'gpt4o_mark_understanding_results'
 
