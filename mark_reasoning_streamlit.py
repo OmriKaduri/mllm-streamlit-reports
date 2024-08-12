@@ -21,6 +21,12 @@ st.write('**Summary statistics**')
 st.write('GPT-4o Accuracy', df['gpt4o_decision'].mean())
 st.write('Internvl Accuracy', df['internvl_decision'].mean())
 
+# show accuracy of grouped by category
+st.write('**Accuracy by keypoint**')
+st.write(df.groupby('keypoint_text_desc')['gpt4o_decision'].mean())
+st.write(df.groupby('keypoint_text_desc')['internvl_decision'].mean())
+
+
 gpt4o_results_path = 'gpt4o_mark_understanding_results'
 
 # index selector slider
